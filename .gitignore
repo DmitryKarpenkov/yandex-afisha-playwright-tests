@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Test results
+/test-results/
+/playwright-report/
+/allure-results/
+/allure-report/
+/playwright/.cache/
+
+# TypeScript
+/dist/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

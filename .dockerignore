@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+test-results
+playwright-report
+allure-results
+allure-report
+dist
+.git
+.gitignore
+README.md
+.env
+.DS_Store
