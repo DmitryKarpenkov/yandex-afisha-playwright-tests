@@ -3,19 +3,16 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
     testDir: './tests',
 
-    // Таймауты
     timeout: 25000,
     expect: {
         timeout: 10000
     },
 
-    // Запуск тестов
     fullyParallel: false,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : 1,
 
-    // Репортеры
     reporter: [
         ['list'],
         ['html', { outputFolder: 'playwright-report' }],

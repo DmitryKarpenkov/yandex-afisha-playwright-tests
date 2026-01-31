@@ -17,16 +17,13 @@ export default class MainPage {
         eventsFeedTitle: 'data-test-id=eventsFeed.title',
         eventsFeedArrow: 'data-test-id=eventsFeed.arrow',
         eventCardRoot: 'data-test-id=eventCard.root',
-        eventCardPoster: 'img.jYbobS',
         eventCardTitle: 'data-test-id=eventCard.eventInfoTitle',
-        eventCardPrice: 'data-test-id=eventCard.price',
         eventCardDetails: 'data-test-id=eventCard.eventInfoDetails',
         eventCardFavorite: 'data-test-id=event-card-favourite-button',
         plusCashbackBadge: 'data-test-id=plusCashbackBadge.item',
         eventCardRating: '[data-test-id*="rating"]',
         eventCardLink: 'data-test-id=eventCard.link',
         topEventsWrapper: '[data-test-id="topEvents.wrapper"]',
-        topEventsTitle: '[data-test-id="topEvents.title"]',
         topEventsContainer: '[data-test-id="topEvents.eventContainer"]',
         topEventCard: '[class*="p8csoW"]',
         topCardNumberImage: '[data-test-id="topCard.numberImage"]',
@@ -34,18 +31,9 @@ export default class MainPage {
         topCardTitle: '[data-test-id="topCard.title"]',
         topCardRubricTag: '[data-test-id="topCard.rubricTag"]',
         topCardDate: '[data-test-id="topCard.date"]',
-        sliderPrevButton: 'button.pl9tt.BDd2ZV.rP05ou',
-        sliderNextButton: 'button.pl9tt.qb30XR',
-        mainFeed: 'data-test-id=mainPage.feed',
-        mainFeedCards: 'data-test-id=mainPage.eventCard',
         viewedBlock: '.IMCiK8',
-        viewedBlockTitle: 'h3.cUYQth',
         viewedCard: '.z2H_NI',
         viewedCardTitle: 'h3.zLWwiG',
-        viewedCardImage: 'img.GIa2du',
-        viewedCardCategory: 'p.R2hRq_',
-        topBlock: 'data-test-id=top.root',
-        topBlockTitle: 'data-test-id=top.title',
         selectionPageTitle: 'data-test-id=selectionPage.selectionPageHeader.title',
     }
 
@@ -54,9 +42,7 @@ export default class MainPage {
     }
 
     public async open(city: string = 'moscow'): Promise<void> {
-        await Promise.all([
-            await this.page.goto(`/${city}`, {waitUntil: 'load'}),
-        ])
+        await this.page.goto(`/${city}`, {waitUntil: 'load'});
     }
 
     public async scrollToEventByTitle(titleText: string): Promise<void> {
@@ -107,7 +93,6 @@ export default class MainPage {
         );
         expect(hoverBgColor).not.toBe(initialBgColor);
         expect(hoverBgColor).not.toBe('rgba(0, 0, 0, 0)');
-
     }
 
     public async getVisibleCalendarDays(): Promise<string[]> {
@@ -143,7 +128,7 @@ export default class MainPage {
     public async scrollCalendar(direction: 'влево' | 'вправо'): Promise<void> {
         const buttonLocator = direction === 'вправо'
             ? this.locators.calendarControlRight
-            : this.locators.calendarControlLeft
+            : this.locators.calendarControlLeft;
 
         const button = this.page.locator(buttonLocator);
         await button.waitFor({state: 'visible'});
@@ -153,9 +138,7 @@ export default class MainPage {
 
     public async assertCalendarDaysChanged(daysBefore: string[], daysAfter: string[]): Promise<void> {
         const firstDayChanged = daysBefore[0] !== daysAfter[0];
-        expect(firstDayChanged,
-            `Дни должны измениться. До: ${daysBefore[0]}, После: ${daysAfter[0]}`
-        ).toBeTruthy();
+        expect(firstDayChanged).toBeTruthy();
     }
 
     public async getBannerSliderPosition(): Promise<string> {
@@ -452,7 +435,6 @@ export default class MainPage {
 
         const randomIndex = Math.floor(Math.random() * Math.min(cardsCount, 3));
         const randomCard = cards.nth(randomIndex);
-
 
         await randomCard.scrollIntoViewIfNeeded();
 

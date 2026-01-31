@@ -112,7 +112,6 @@ test.describe('Главная страница Яндекс.Афиша. Моск
         for (let feedTitle of allFeedTitles) {
             await mainPage.scrollToEventByTitle(feedTitle);
             await mainPage.assertFeedCardsLayout(feedTitle, 3);
-
         }
     });
 
